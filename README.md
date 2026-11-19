@@ -32,7 +32,7 @@ Switch to Apex Pest. Write the termite swarm-season landing page.
 ## Layout
 
 ```
-.claude/skills/            53 upstream skills + agent-reach + streamline-client + streamline-local-services
+.claude/skills/            53 marketing skills + 6 writing/design skills + agent-reach + 2 streamline skills
   UPSTREAM.md              vendored version + commit
 clients/
   _template/               product-marketing.md + brand.md scaffold (local-business fields added)
@@ -43,6 +43,7 @@ scripts/
   new-client.sh            scripts/new-client.sh <slug> <vertical> "Business Name"
   use-client.sh            scripts/use-client.sh <slug>   |  --show
   sync-skills.sh           pull the latest upstream skills
+  sync-extra-skills.sh     re-vendor the six writing/design skills at pinned commits
   install-agent-reach.sh   install the Agent Reach CLI (pinned) and refresh its skill
 CLAUDE.md                  agent operating procedure and hard rules
 ```
@@ -62,6 +63,25 @@ The symlinks are per-checkout state, so re-run `use-client.sh` (or just name the
 The agent uses whichever of these are connected to the Claude Code session: Ahrefs, Semrush, GMB Crush (GBP, reviews, geo-grids, GSC/GA), GoHighLevel, Meta Ads, Google Sheets/Docs/Drive, ClickUp, Slack, WPvibe, Lovable, Arcads, Higgsfield. Everything is read-only unless you approve a specific write.
 
 For accounts without an MCP connector (Google Ads, GA4 direct, call tracking), see `tools/REGISTRY.md` and `tools/integrations/` for the API and CLI setup.
+
+## Writing and design finishing skills
+
+Six third-party skills handle the last pass on copy and UI, each vendored at a pinned commit:
+
+| Skill | Source | What it does | Needs |
+|---|---|---|---|
+| `humanizer` | blader/humanizer | Rewrites AI-sounding text against a numbered pattern list without changing what it says; matches a writing sample | nothing |
+| `no-ai-slop` | petergyang/no-ai-slop | Minimum-edit pass that keeps the writer's voice; detect mode names patterns without rewriting | nothing |
+| `anti-ai-slop-writing` | jalaalrd/anti-ai-slop-writing | Drafting-time blacklist: banned words, phrases, openers, structures; flags invented stats and quotes | nothing |
+| `make-interfaces-feel-better` | jakubkrehel/make-interfaces-feel-better | UI detail polish: radius, alignment, shadows, type, motion, hit areas | nothing |
+| `better-icons` | better-auth/better-icons | Searches 200+ icon sets via Iconify and pulls real SVGs | `npm i -g better-icons`, network access to `api.iconify.design` |
+| `superdesign` | superdesigndev/superdesign-skill | Design drafts for pages, decks, graphics on a hosted canvas | Superdesign account and login; uploads files; spends credits |
+
+The agent uses them in a fixed order (drafting constraints, then one rewrite pass, then the compliance check) so they don't all fire on the same draft. Superdesign is gated: the agent only runs it when you ask for it. Details in `.claude/skills/streamline-local-services/references/writing-and-design-finish.md`.
+
+```bash
+scripts/sync-extra-skills.sh     # re-vendor at the pinned commits (edit the commit in the script to update one)
+```
 
 ## Agent Reach (platform access)
 
@@ -97,9 +117,10 @@ scripts/sync-skills.sh          # or: scripts/sync-skills.sh <tag>
 git diff --stat && git commit -am "Sync marketingskills <version>"
 ```
 
-`streamline-*` skills are never touched by the sync.
+The sync replaces only the skills it installed (tracked in `.claude/skills/.marketingskills.list`); everything else in `.claude/skills/` is left alone.
 
 ## License
 
 Upstream skills and tools: MIT, Copyright (c) 2025 Corey Haines (`THIRD_PARTY_LICENSE-marketingskills`).
+Writing and design skills: MIT, per the `LICENSE` file in each skill folder (`anti-ai-slop-writing` declares MIT in its README only).
 Agent Reach skill: MIT, Copyright (c) 2025 Agent Eyes (`THIRD_PARTY_LICENSE-agent-reach`).

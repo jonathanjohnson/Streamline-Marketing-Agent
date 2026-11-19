@@ -2,7 +2,7 @@
 name: streamline-local-services
 description: "When the user asks for marketing work for a pool service, pest control, HVAC, HOA management, or med spa client, or any local service business: routes the task to the right upstream marketing skill, layers in the vertical playbook (verticals/*.md), and maps it to the connected data tools (Ahrefs, Semrush, GMB Crush, GoHighLevel, Meta Ads, Agent Reach for Reddit/YouTube/LinkedIn). Use for audits, campaign builds, content plans, GBP work, monthly reporting, and offer design for local clients."
 metadata:
-  version: 1.1.0
+  version: 1.2.0
   owner: Streamline
 ---
 
@@ -26,8 +26,11 @@ The upstream skills are written for software companies first. This skill adapts 
 | Content plan / blog topics | `content-strategy`, then `ai-seo` | Keyword clusters, Seasonality | Ahrefs/Semrush keyword tools, Agent Reach (Reddit questions, YouTube transcripts of ranking videos) |
 | City or service-area pages | `programmatic-seo`, `site-architecture` | Keyword clusters | Ahrefs/Semrush, client's real service area |
 | Google Ads / LSA / Meta plan or diagnosis | `ads`, `conversion-tracking`, `attribution` | Economics, Channel mix, KPIs | Meta Ads MCP; Google Ads via `tools/integrations/google-ads.md` |
-| Ad copy and creative | `ad-creative`, `copy-editing` (compliance pass) | Offers, Compliance | Arcads / Higgsfield for production when asked |
-| Landing page or website copy | `copywriting`, `cro` | CRO notes, Offers, Compliance | WPvibe (WordPress) or Lovable to build when asked |
+| Ad copy and creative | `ad-creative`, then the writing finish below, then the compliance pass | Offers, Compliance | Arcads / Higgsfield for production when asked |
+| Landing page or website copy | `copywriting`, `cro`, then the writing finish below | CRO notes, Offers, Compliance | WPvibe (WordPress) or Lovable to build when asked |
+| "Make this not sound like AI" / edit a draft | `humanizer` (AI-written), `no-ai-slop` (human-written or detect-only), `copy-editing` (plain tightening) | Compliance | none |
+| UI polish on a built page, icons | `make-interfaces-feel-better`, `better-icons` | CRO notes | Lovable, WPvibe |
+| Canvas design exploration | `superdesign` (only on request; hosted, uploads files, needs login) | none | Superdesign account |
 | Offer / promo design | `offers`, `pricing` | Offers that work | CRM data for close rates |
 | Email / SMS nurture, reactivation | `emails`, `sms`, `churn-prevention` | Retention | GoHighLevel |
 | Lead follow-up, pipeline, speed-to-lead | `revops` | KPIs | GoHighLevel |
@@ -38,6 +41,8 @@ The upstream skills are written for software companies first. This skill adapts 
 | Second opinions on a big call | `marketing-council` | Economics | none |
 
 Agent Reach plays, vertical subreddits, and its error handling are in [references/agent-reach-playbook.md](references/agent-reach-playbook.md). Read it before any Agent Reach call.
+
+The order for the six writing and design finishing skills, and the approval gate on Superdesign, are in [references/writing-and-design-finish.md](references/writing-and-design-finish.md). Read it before finishing any customer-facing copy or UI.
 
 ## Local-services defaults the upstream skills don't know
 

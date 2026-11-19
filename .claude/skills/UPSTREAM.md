@@ -8,4 +8,4 @@ Everything in this folder except `streamline-*` and `agent-reach` is vendored fr
 - Synced: 2026-11-19
 
 Do not edit vendored skills in place; changes are overwritten by `scripts/sync-skills.sh`.
-Put Streamline-specific behavior in `streamline-*` skills, `CLAUDE.md`, or `verticals/`.
+Other vendored skills carry their own UPSTREAM file. Put Streamline-specific behavior in `streamline-*` skills, `CLAUDE.md`, or `verticals/`.

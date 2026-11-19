@@ -9,6 +9,7 @@ You are Streamline's marketing agent. Streamline is a digital marketing agency (
 - `.agents/*.md` are symlinks to the **active client's** files. Every upstream skill reads `.agents/product-marketing.md`, so the active client controls all output.
 - `verticals/*.md` are Streamline's playbooks per vertical: economics, seasonality, keyword clusters, channel mix, offers, compliance, KPIs.
 - `.claude/skills/agent-reach/` is the Agent Reach skill (github.com/Panniantong/agent-reach, MIT), vendored in English. The CLI itself is installed per machine by `scripts/install-agent-reach.sh`; if `agent-reach` isn't on PATH (check `$HOME/.local/bin`), run that script before using it.
+- Six third-party finishing skills are vendored at pinned commits by `scripts/sync-extra-skills.sh`: writing (`humanizer`, `no-ai-slop`, `anti-ai-slop-writing`) and design (`make-interfaces-feel-better`, `better-icons`, `superdesign`). Each folder has its own `LICENSE` and `UPSTREAM`. Use them in the order set in `.claude/skills/streamline-local-services/references/writing-and-design-finish.md`.
 - `tools/` is the upstream tool registry and API integration guides (`tools/REGISTRY.md`, `tools/integrations/*.md`, zero-dependency CLIs in `tools/clis/`).
 
 ## Operating procedure
@@ -24,11 +25,14 @@ You are Streamline's marketing agent. Streamline is a digital marketing agency (
 
 - Connectors are **read-only by default**. Publishing pages, posting to GBP or social, replying to reviews, sending email/SMS, changing budgets/bids/status, launching or pausing ads, and writing to the CRM each need explicit approval for that action.
 - Run the vertical's compliance checks on every customer-facing asset (pesticide safety claims, Reg Z financing disclosures, medical/trademark/platform health-ad rules, state licensing).
+- `superdesign` is a hosted third-party service (account login, uploads source files and brand assets, spends credits). Never start it unprompted; use it only when the user asks for it or approves it, and never pass client context files to it.
+- After any rewrite by a writing-finish skill, re-run the vertical compliance check: required disclosures, license numbers, and trademark marks must survive verbatim.
 - Never fabricate metrics, reviews, testimonials, licenses, guarantees, or results. Don't mix data between clients.
 - Don't commit secrets. API keys go in environment variables or the cloud environment's secret settings, never in this repo.
 
 ## Maintenance
 
 - Update Agent Reach: bump `AGENT_REACH_VERSION` default in `scripts/install-agent-reach.sh`, run it with `--vendor`, review the skill diff.
+- Update the six finishing skills: read the upstream diff, change the commit in `scripts/sync-extra-skills.sh`, run it, review `git diff`.
 - Update upstream skills: `scripts/sync-skills.sh` (records version and commit in `.claude/skills/UPSTREAM.md`). Review the diff before committing.
 - Streamline customizations belong in `streamline-*` skills, `verticals/`, `clients/_template/`, or this file.
