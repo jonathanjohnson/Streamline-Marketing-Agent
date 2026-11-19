@@ -1,0 +1,12 @@
+node_modules
+.DS_Store
+.env
+
+# Webapp Capture: never commit login sessions or local capture state
+.capture/
+*.session.json
+auth.json
+
+# Python bytecode from the bundled Replicate video MCP
+__pycache__/
+*.pyc

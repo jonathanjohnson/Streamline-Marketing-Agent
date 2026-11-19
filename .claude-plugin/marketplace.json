@@ -1,0 +1,26 @@
+{
+  "name": "streamline-marketing",
+  "owner": {
+    "name": "Streamline Marketing Agent"
+  },
+  "metadata": {
+    "description": "Plugins and skills for the Streamline marketing agent."
+  },
+  "plugins": [
+    {
+      "name": "webapp-capture",
+      "displayName": "Audit My App with Claude",
+      "source": "./plugins/webapp-capture",
+      "description": "Capture any live web app: demo videos, screenshot sets, and scripts; a full UI component library with DTCG design tokens, a Claude Design handoff zip, and a shadcn/ui map; visual and code inconsistency audits. Vendored unmodified from Legion Code Inc.",
+      "version": "2.0.0",
+      "author": {
+        "name": "Legion Code Inc.",
+        "url": "https://www.legioncodeinc.com"
+      },
+      "homepage": "https://github.com/legioncodeinc/app-auditor-plugin-claude#readme",
+      "repository": "https://github.com/legioncodeinc/app-auditor-plugin-claude",
+      "license": "AGPL-3.0-or-later",
+      "category": "development"
+    }
+  ]
+}
