@@ -1,0 +1,11 @@
+# Active-client symlinks are per-session state; client data lives in clients/
+.agents/product-marketing.md
+.agents/brand.md
+.agents/design.md
+.agents/listening-sources.md
+.agents/media-list.md
+.agents/ACTIVE_CLIENT
+.env
+.env.*
+node_modules/
+.DS_Store
