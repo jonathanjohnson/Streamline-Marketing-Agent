@@ -1,8 +1,8 @@
 ---
 name: streamline-local-services
-description: "When the user asks for marketing work for a pool service, pest control, HVAC, HOA management, or med spa client, or any local service business: routes the task to the right upstream marketing skill, layers in the vertical playbook (verticals/*.md), and maps it to the connected data tools (Ahrefs, Semrush, GMB Crush, GoHighLevel, Meta Ads). Use for audits, campaign builds, content plans, GBP work, monthly reporting, and offer design for local clients."
+description: "When the user asks for marketing work for a pool service, pest control, HVAC, HOA management, or med spa client, or any local service business: routes the task to the right upstream marketing skill, layers in the vertical playbook (verticals/*.md), and maps it to the connected data tools (Ahrefs, Semrush, GMB Crush, GoHighLevel, Meta Ads, Agent Reach for Reddit/YouTube/LinkedIn). Use for audits, campaign builds, content plans, GBP work, monthly reporting, and offer design for local clients."
 metadata:
-  version: 1.0.0
+  version: 1.1.0
   owner: Streamline
 ---
 
@@ -20,9 +20,10 @@ The upstream skills are written for software companies first. This skill adapts 
 
 | Request | Primary skill(s) | Vertical playbook section | Data tools |
 |---|---|---|---|
+| Voice of customer, objections, customer language | `customer-research`, `product-marketing` | Keyword clusters, Offers | Agent Reach: Reddit search/read, YouTube subtitles; GMB Crush reviews |
 | "Audit their SEO" / rankings dropped | `seo-audit` (read its local-seo references), `schema` | Keyword clusters | Ahrefs or Semrush, GMB Crush geo-grid, GSC via GMB Crush |
 | GBP optimization, posts, reviews | `seo-audit` local references, `referrals` (review programs), `social` | Channel mix (GBP) | GMB Crush (profile, posts, reviews, geo-grid) |
-| Content plan / blog topics | `content-strategy`, then `ai-seo` | Keyword clusters, Seasonality | Ahrefs/Semrush keyword tools |
+| Content plan / blog topics | `content-strategy`, then `ai-seo` | Keyword clusters, Seasonality | Ahrefs/Semrush keyword tools, Agent Reach (Reddit questions, YouTube transcripts of ranking videos) |
 | City or service-area pages | `programmatic-seo`, `site-architecture` | Keyword clusters | Ahrefs/Semrush, client's real service area |
 | Google Ads / LSA / Meta plan or diagnosis | `ads`, `conversion-tracking`, `attribution` | Economics, Channel mix, KPIs | Meta Ads MCP; Google Ads via `tools/integrations/google-ads.md` |
 | Ad copy and creative | `ad-creative`, `copy-editing` (compliance pass) | Offers, Compliance | Arcads / Higgsfield for production when asked |
@@ -30,11 +31,13 @@ The upstream skills are written for software companies first. This skill adapts 
 | Offer / promo design | `offers`, `pricing` | Offers that work | CRM data for close rates |
 | Email / SMS nurture, reactivation | `emails`, `sms`, `churn-prevention` | Retention | GoHighLevel |
 | Lead follow-up, pipeline, speed-to-lead | `revops` | KPIs | GoHighLevel |
-| Competitor teardown | `competitor-profiling`, `reverse-engineer-marketing` | Channel mix | Ahrefs/Semrush, Meta Ad Library (`ads_library_search`), GMB Crush competitor lists |
+| Competitor teardown | `competitor-profiling`, `reverse-engineer-marketing` | Channel mix | Ahrefs/Semrush, Meta Ad Library (`ads_library_search`), GMB Crush competitor lists, Agent Reach (YouTube transcripts, LinkedIn jobs as expansion signals) |
 | Commercial / B2B outbound (HOA boards, commercial pest, property managers) | `prospecting`, `cold-email`, `sales-enablement` | Channel mix (outbound) | Ultimate_Scraper `extract_map_places` / `extract_contacts` |
 | Full marketing plan or annual strategy | `marketing-plan` | All sections | All of the above |
 | Recurring monthly or weekly check | `marketing-loops` | KPIs | All of the above, read-only |
 | Second opinions on a big call | `marketing-council` | Economics | none |
+
+Agent Reach plays, vertical subreddits, and its error handling are in [references/agent-reach-playbook.md](references/agent-reach-playbook.md). Read it before any Agent Reach call.
 
 ## Local-services defaults the upstream skills don't know
 

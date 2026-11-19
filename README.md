@@ -32,7 +32,7 @@ Switch to Apex Pest. Write the termite swarm-season landing page.
 ## Layout
 
 ```
-.claude/skills/            53 upstream skills + streamline-client + streamline-local-services
+.claude/skills/            53 upstream skills + agent-reach + streamline-client + streamline-local-services
   UPSTREAM.md              vendored version + commit
 clients/
   _template/               product-marketing.md + brand.md scaffold (local-business fields added)
@@ -43,6 +43,7 @@ scripts/
   new-client.sh            scripts/new-client.sh <slug> <vertical> "Business Name"
   use-client.sh            scripts/use-client.sh <slug>   |  --show
   sync-skills.sh           pull the latest upstream skills
+  install-agent-reach.sh   install the Agent Reach CLI (pinned) and refresh its skill
 CLAUDE.md                  agent operating procedure and hard rules
 ```
 
@@ -62,6 +63,33 @@ The agent uses whichever of these are connected to the Claude Code session: Ahre
 
 For accounts without an MCP connector (Google Ads, GA4 direct, call tracking), see `tools/REGISTRY.md` and `tools/integrations/` for the API and CLI setup.
 
+## Agent Reach (platform access)
+
+[Agent Reach](https://github.com/Panniantong/agent-reach) gives the agent read-only access to Reddit threads and comments, YouTube search and transcripts, LinkedIn jobs, GitHub, and a fallback web reader, all as one JSON shape. The agent uses it for voice-of-customer mining, objection research, competitor video teardowns, and hiring signals (plays in `.claude/skills/streamline-local-services/references/agent-reach-playbook.md`).
+
+```bash
+scripts/install-agent-reach.sh      # installs the pinned release (v1.6.1) with uv, runs setup
+```
+
+- The skill is committed at `.claude/skills/agent-reach/` (English). The CLI installs to `~/.local/bin/agent-reach`, with state in `~/.agent-reach/`.
+- Installs from a git clone of the release tag. Never `pip install agent-reach`: the PyPI package of that name is a different project.
+- Strictly read-only: no posting, commenting, or messaging. Login-walled channels (X, Instagram, Facebook, LinkedIn search) use your own logins on your own machine via `agent-reach login <channel>`; the agent never handles passwords.
+
+**Cloud sessions:** the environment's network policy has to allow the hosts the channels call, or they fail with `UPSTREAM_BROKEN ... 403`. GitHub works out of the box. For the rest, add these under the environment's Network access > Allowed domains:
+
+| Host | Channel |
+|---|---|
+| `r.jina.ai`, `mcp.exa.ai` | web read / web search |
+| `www.youtube.com` | YouTube search, info, subtitles |
+| `www.reddit.com` | Reddit public read and search |
+| `www.linkedin.com` | LinkedIn public jobs |
+
+To install it automatically in new cloud sessions, add this line to the environment's setup script:
+
+```bash
+if [ -x Streamline-Marketing-Agent/scripts/install-agent-reach.sh ]; then Streamline-Marketing-Agent/scripts/install-agent-reach.sh; fi
+```
+
 ## Updating the upstream skills
 
 ```bash
@@ -74,3 +102,4 @@ git diff --stat && git commit -am "Sync marketingskills <version>"
 ## License
 
 Upstream skills and tools: MIT, Copyright (c) 2025 Corey Haines (`THIRD_PARTY_LICENSE-marketingskills`).
+Agent Reach skill: MIT, Copyright (c) 2025 Agent Eyes (`THIRD_PARTY_LICENSE-agent-reach`).

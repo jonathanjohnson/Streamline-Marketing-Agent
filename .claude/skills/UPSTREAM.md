@@ -1,6 +1,6 @@
 # Vendored skills
 
-Everything in this folder except `streamline-*` is vendored from
+Everything in this folder except `streamline-*` and `agent-reach` is vendored from
 [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills) (MIT).
 
 - Version: 2.14.13

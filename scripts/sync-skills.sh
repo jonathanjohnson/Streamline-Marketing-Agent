@@ -2,7 +2,7 @@
 # Pull the latest coreyhaines31/marketingskills and vendor it into this repo.
 #   skills/*  -> .claude/skills/   (Claude Code project skills)
 #   tools/    -> tools/            (skills reference tools/REGISTRY.md etc. from repo root)
-# Streamline-owned skills (prefix "streamline-") are never touched.
+# Streamline-owned skills (prefix "streamline-") and agent-reach are never touched.
 # Usage: scripts/sync-skills.sh [git-ref]   (default: main)
 set -euo pipefail
 
@@ -21,7 +21,7 @@ mkdir -p "$ROOT/.claude/skills"
 for d in "$ROOT"/.claude/skills/*/; do
   [ -d "$d" ] || continue
   name="$(basename "$d")"
-  case "$name" in streamline-*) ;; *) rm -rf "$d" ;; esac
+  case "$name" in streamline-*|agent-reach) ;; *) rm -rf "$d" ;; esac
 done
 for d in "$TMP"/ms/skills/*/; do
   name="$(basename "$d")"
@@ -36,7 +36,7 @@ cp "$TMP/ms/LICENSE" "$ROOT/THIRD_PARTY_LICENSE-marketingskills"
 cat > "$ROOT/.claude/skills/UPSTREAM.md" <<MD
 # Vendored skills
 
-Everything in this folder except \`streamline-*\` is vendored from
+Everything in this folder except \`streamline-*\` and \`agent-reach\` is vendored from
 [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills) (MIT).
 
 - Version: ${VERSION}
